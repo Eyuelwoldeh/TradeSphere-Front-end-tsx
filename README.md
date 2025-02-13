@@ -83,5 +83,5 @@ This project is licensed under the MIT License. See the [LICENSE](./LICENSE) fil
 
 If you have any questions or suggestions, feel free to reach out:
 
-- **Email**: eyuelwoldehana@gmail.com
-- **GitHub**: [your-username](https://www.github.com/Eyuelwoldeh)
+- **LinkedIn**: [woldehanna](https://www.linkedin.com/in/woldehanna)
+- **GitHub**: [Eyuelwoldeh](https://www.github.com/Eyuelwoldeh)
