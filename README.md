@@ -29,19 +29,20 @@ This is a TypeScript-based project that focuses on building a user registration 
 To run this project locally, follow these steps:
 
 1. Clone the repository:
-   ***
-   git clone https://github.com/your-username/your-repo-name.git
-   ***
+   ```
+   git clone https://github.com/Eyuelwoldeh/TradeSphere-Front-end-tsx.git
+   ```
+
 
 2. Install dependencies:
-   ***
+   ```
    npm install
-   ***
+   ```
 
 3. Start the development server:
-   ***
+   ```
    npm start
-   ***
+   ```
 
 ---
 
