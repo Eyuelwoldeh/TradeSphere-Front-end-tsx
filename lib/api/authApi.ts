@@ -15,9 +15,25 @@ export const login = async (email: string, password: string) => {
     }
 };
 
-export const register = async (name: string, email: string, password: string) => {
+export const register = async (name: string, email: string, password: string, role: string, company: string, location: string, tradeInterests: string[]) => {
+    
+    const trimmedEmail = email.trim();
+    const trimmedName = name.trim();
+    const trimmedPassword = password.trim();
+    const trimmedRole = role.trim();
+    const trimmedLocation = location.trim();
+    const trimmedCompany = company.trim();
+    
     try {
-        const response = await axiosInstance.post("/auth/register", { name, email, password });
+        const response = await axiosInstance.post("/users/create_user", { 
+            name: trimmedName, 
+            email: trimmedEmail, 
+            passwordHash: trimmedPassword, 
+            role: trimmedRole, 
+            company: trimmedCompany,
+            location: trimmedLocation,
+            tradeInterests: tradeInterests
+        });
         return response.data;
     } catch (error) {
         console.error("Registration failed:", error);
