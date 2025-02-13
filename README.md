@@ -48,9 +48,9 @@ To run this project locally, follow these steps:
 ## Technologies Used
 
 - **TypeScript**: Primary programming language.
-- **React**: Frontend framework (if applicable).
-- **Node.js**: Backend runtime (if applicable).
-- **Other Libraries**: List any additional libraries or tools used.
+- **React**: Frontend framework.
+- **Next.js**: Frontend framework.
+- **Other Libraries**: Tailwindcss.
 
 ---
 
