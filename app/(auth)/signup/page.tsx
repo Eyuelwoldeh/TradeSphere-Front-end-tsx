@@ -36,6 +36,7 @@ export default function SignUp() {
             <h1 className="animate-[gradient_6s_linear_infinite] bg-[linear-gradient(to_right,var(--color-gray-200),var(--color-indigo-200),var(--color-gray-50),var(--color-indigo-300),var(--color-gray-200))] bg-[length:200%_auto] bg-clip-text font-nacelle text-3xl font-semibold text-transparent md:text-4xl">
               Create an account
             </h1>
+            <span className="text-red-500">*</span> indicates required field
           </div>
           {/* Contact form */}
           <form onSubmit={handleSubmit} className="mx-auto max-w-[400px]">
@@ -108,6 +109,7 @@ export default function SignUp() {
                 >
                   <option value="importer">Importer</option>
                   <option value="exporter">Exporter</option>
+                  <option value="admin"></option>
                   <option value="admin">Admin</option>
                 </select>
               </div>
@@ -127,7 +129,7 @@ export default function SignUp() {
               </div>
               <div>
                 <label className="block text-sm font-medium text-indigo-200/65" htmlFor="tradeInterest">
-                  Trade Interests <span className="text-red-500">*</span>
+                  Trade Interests (use mouse to drag accross and select multiple)<span className="text-red-500">*</span>
                 </label>
                 <select
                   multiple
