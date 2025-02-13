@@ -2,10 +2,12 @@ import axiosInstance from "../axiosConfig";
 import { setAuthToken } from "../auth";
 
 export const login = async (email: string, password: string) => {
+    const trimmedEmail = email.trim();
+    const trimmedPassword = password.trim();
     try {
-        const response = await axiosInstance.post("/auth/login", { email, password });
+        const response = await axiosInstance.post("/auth/login", { email: trimmedEmail, passwordHash: trimmedPassword });
         const { token } = response.data;
-        setAuthToken(token); // Store token for future requests
+        setAuthToken(token);
         return response.data;
     } catch (error) {
         console.error("Login failed:", error);

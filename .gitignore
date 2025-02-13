@@ -5,6 +5,7 @@ public/
 # Build artifacts
 dist/
 build/
+.next/
 
 # Environment variables
 .env

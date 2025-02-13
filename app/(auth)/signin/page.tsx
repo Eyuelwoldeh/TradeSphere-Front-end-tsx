@@ -1,11 +1,28 @@
-export const metadata = {
-  title: "Sign In - Open PRO",
-  description: "Page description",
-};
+"use client";
 
 import Link from "next/link";
+import {useState} from "react";
+import { login } from "../../../lib/api/authApi";
+import { useRouter } from "next/navigation";
 
 export default function SignIn() {
+
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+  const router = useRouter();
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    try {
+      const userData = await login(email, password);
+      localStorage.setItem("user", JSON.stringify(userData));
+      router.push("/messages");
+    } catch (err) {
+      setError("Invalid credentials");
+    }
+  };
+
   return (
     <section>
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
@@ -15,9 +32,10 @@ export default function SignIn() {
             <h1 className="animate-[gradient_6s_linear_infinite] bg-[linear-gradient(to_right,var(--color-gray-200),var(--color-indigo-200),var(--color-gray-50),var(--color-indigo-300),var(--color-gray-200))] bg-[length:200%_auto] bg-clip-text font-nacelle text-3xl font-semibold text-transparent md:text-4xl">
               Welcome back
             </h1>
+            {error && <p className="text-red-500 text-center mt-2">{error}</p>}
           </div>
           {/* Contact form */}
-          <form className="mx-auto max-w-[400px]">
+          <form onSubmit={handleSubmit} className="mx-auto max-w-[400px]">
             <div className="space-y-5">
               <div>
                 <label
@@ -31,6 +49,7 @@ export default function SignIn() {
                   type="email"
                   className="form-input w-full"
                   placeholder="Your email"
+                  onChange={(e) => setEmail(e.target.value)}
                 />
               </div>
               <div>
@@ -53,6 +72,7 @@ export default function SignIn() {
                   type="password"
                   className="form-input w-full"
                   placeholder="Your password"
+                  onChange={(e) => setPassword(e.target.value)}
                 />
               </div>
             </div>
