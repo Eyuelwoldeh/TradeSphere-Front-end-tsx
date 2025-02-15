@@ -1,7 +1,7 @@
 import axios from "axios";
 import { getAuthToken } from "./auth";
 
-const API_BASE_URL = "http://localhost:8080/api"; // Spring Boot backend
+const API_BASE_URL = "https://tradesphere-u7ys.onrender.com/api"; // Spring Boot backend (Now deployed on render)
 
 const axiosInstance = axios.create({
     baseURL: API_BASE_URL,
