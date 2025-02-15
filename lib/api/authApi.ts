@@ -7,7 +7,7 @@ export const login = async (email: string, password: string) => {
 
     if (isLoggingin) return;
     isLoggingin = true;
-    
+
     const trimmedEmail = email.trim();
     const trimmedPassword = password.trim();
     try {
@@ -16,6 +16,7 @@ export const login = async (email: string, password: string) => {
         setAuthToken(token);
         return response.data;
     } catch (error) {
+        isLoggingin = false;
         console.error("Login failed:", error);
         throw error;
     }
