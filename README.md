@@ -1,4 +1,4 @@
-# Project Name
+# Avenis
 
 This is a TypeScript-based project that focuses on building a user registration system. The project is currently in progress, and this README will be updated as new features are implemented.
 
