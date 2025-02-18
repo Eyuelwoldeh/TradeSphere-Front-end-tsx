@@ -5,7 +5,6 @@ import Logo from "./logo";
 import { Menu, MenuButton, MenuItem, MenuItems } from "@headlessui/react";
 import { ChevronDown } from "lucide-react";
 import clsx from 'clsx';
-import { Fragment } from "react";
 
 export default function Header() {
   const links = [
