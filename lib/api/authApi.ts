@@ -1,5 +1,5 @@
 import axiosInstance from "../axiosConfig";
-import { setAuthToken } from "../auth";
+import { getAuthToken, setAuthToken } from "../auth";
 
 let isLoggingin = false;
 
@@ -14,6 +14,7 @@ export const login = async (email: string, password: string) => {
         const response = await axiosInstance.post("/auth/login", { email: trimmedEmail, passwordHash: trimmedPassword });
         const { token } = response.data;
         setAuthToken(token);
+        console.log(getAuthToken());
         return response.data;
     } catch (error) {
         isLoggingin = false;

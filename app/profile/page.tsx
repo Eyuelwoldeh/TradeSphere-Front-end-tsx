@@ -4,6 +4,7 @@ import { useRouter } from "next/navigation";
 import { UserCircle, LogOut } from "lucide-react";
 import { Dialog } from "@headlessui/react";
 import { Settings, Activity, Shield } from "lucide-react";
+import { getAuthToken } from "@/lib/auth";
 
 // Create content components for each tab
 const PersonalContent = () => (
@@ -115,11 +116,18 @@ const ActivityContent = () => (
             <p className="text-white font-medium">Feb 17, 2025, 3:15 PM</p>
             <p className="text-sm text-gray-400">Firefox on Linux • 192.168.1.3</p>
           </div>
+          <div>
+            <p>
+              {getAuthToken()}
+            </p>
+          </div>
         </div>
       </div>
     </div>
   </div>
 );
+
+// Eyuel - Make sure to look out for hook errors. Only call hooks inside main functions...
 
 const Profile = () => {
   const router = useRouter();
