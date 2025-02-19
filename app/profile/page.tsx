@@ -2,18 +2,58 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { UserCircle, Building2, MapPin, Mail, Phone, LogOut, Edit, Save, X } from "lucide-react";
+import { Dialog } from "@headlessui/react";
+import { Sidebar, Menu, MenuItem, SubMenu } from 'react-pro-sidebar';
+import { Settings, Lock, Activity, Shield } from "lucide-react";
 
 const Profile = () => {
   const [isEditing, setIsEditing] = useState(false);
   const router = useRouter();
+  let [isOpen, setIsOpen] = useState(false)
+
+  const menuItems = [
+    { id: "personal", label: "Personal", icon: UserCircle },
+    { id: "settings", label: "Settings", icon: Settings },
+    { id: "security", label: "Security & Privacy", icon: Shield },
+    { id: "activity", label: "Activity", icon: Activity },
+  ];
+  const [selectedTab, setSelectedTab] = useState("personal");
 
   const handleSignOut = () => {
     localStorage.removeItem("user");
-    router.push("/signin");
+    router.push("/");
   };
 
   return (
-    <section className="min-h-screen bg-gradient-to-b via-gray-800/50">
+
+    <section className="min-h-screen bg-gradient-to-b">
+      {/* Sidebar */}
+      <aside className="h-screen w-64 p-6 border-r border-gray-700 bg-transparent">
+        <h2 className="text-2xl font-semibold text-white mb-6">Profile</h2>
+        <nav className="space-y-2">
+          {menuItems.map(({ id, label, icon: Icon }) => (
+            <button
+              key={id}
+              onClick={() => setSelectedTab(id)}
+              className={`flex items-center gap-3 w-full px-4 py-3 rounded-lg text-left transition-all ${
+                selectedTab === id
+                  ? "bg-indigo-600 text-white"
+                  : "text-gray-300 hover:bg-gray-700 hover:text-white"
+              }`}
+            >
+              <Icon className="h-5 w-5" />
+              {label}
+            </button>
+          ))}
+          <button
+            onClick={() => setIsOpen(true)}
+            className="flex items-center gap-3 w-full px-4 py-3 rounded-lg text-left text-gray-300 hover:bg-red-600 hover:text-white transition-all"
+          >
+            <LogOut className="h-5 w-5" />
+            Sign Out
+          </button>
+        </nav>
+      </aside>
       <div className="mx-auto max-w-6xl px-4 sm:px-6 py-12">
         {/* Header Section */}
         <div className="mb-12 text-center">
@@ -44,13 +84,41 @@ const Profile = () => {
             </div>
 
             <button
-              onClick={handleSignOut}
+              onClick={() => setIsOpen(true)}
               className="w-full rounded-lg bg-gradient-to-r from-red-500 to-red-600 px-4 py-3 text-white hover:from-red-600 hover:to-red-700 flex items-center justify-center gap-2"
             >
               <LogOut className="h-5 w-5" />
               Sign Out
             </button>
           </div>
+          {/* Modal for Confirmation */}
+          <Dialog open={isOpen} onClose={() => setIsOpen(false)} className="fixed inset-0 z-50 flex items-center justify-center">
+            <div className="fixed inset-0 bg-black bg-opacity-50" aria-hidden="true"></div>
+            <Dialog.Panel className="relative bg-white rounded-lg shadow-lg p-6 max-w-sm mx-auto">
+              <Dialog.Title className="text-lg font-semibold text-gray-900">Sign Out</Dialog.Title>
+              <Dialog.Description className="text-sm text-gray-600 mt-2">
+                Are you sure you want to sign out? You will need to log in again to access your account.
+              </Dialog.Description>
+              <div className="mt-4 flex justify-end space-x-2">
+                <button
+                  onClick={() => setIsOpen(false)}
+                  className="px-4 py-2 bg-gray-300 text-gray-700 rounded-lg hover:bg-gray-400"
+                >
+                  Cancel
+                </button>
+                <button
+                  onClick={() => {
+                    setIsOpen(false);  // Close the modal first
+                    setTimeout(handleSignOut, 300); // Delay sign out slightly to prevent instant navigation
+                  }}
+                  className="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700"
+                >
+                  Sign Out
+                </button>
+              </div>
+            </Dialog.Panel>
+          </Dialog>
+
 
           {/* Middle Column - Personal Information */}
           <div className="rounded-xl bg-gray-800/50 p-6 backdrop-blur-sm md:col-span-2">
