@@ -5,6 +5,7 @@ import { UserCircle, LogOut } from "lucide-react";
 import { Dialog } from "@headlessui/react";
 import { Settings, Activity, Shield } from "lucide-react";
 import { getAuthToken } from "@/lib/auth";
+import { useAuth } from "@/lib/api/useAuth";
 
 // Create content components for each tab
 const PersonalContent = () => (
@@ -130,6 +131,8 @@ const ActivityContent = () => (
 // Eyuel - Make sure to look out for hook errors. Only call hooks inside main functions...
 
 const Profile = () => {
+  useAuth();
+
   const router = useRouter();
   const [isOpen, setIsOpen] = useState(false);
   const [selectedTab, setSelectedTab] = useState("personal");

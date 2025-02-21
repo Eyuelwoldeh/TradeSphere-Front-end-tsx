@@ -20,7 +20,6 @@ export default function SignUp() {
     e.preventDefault();
     try {
       const userData = await register(name, email, password, role, company, location, tradeInterests);
-      localStorage.setItem("user", JSON.stringify(userData));
       router.push("/profile");
     } catch (err) {
       setError("Registration failed. Please try again.");
