@@ -152,7 +152,7 @@ const Profile = () => {
   useEffect(() => {
     const profData = async () => {
       const token = getAuthToken();
-      const response = await axiosInstance.get('users/profile', { // Use '/api/users/profile' instead of 'users/profile'
+      const response = await axiosInstance.get('users/profile', {
         headers: {
           'Authorization': `Bearer ${token}`,
         },
@@ -177,7 +177,7 @@ const Profile = () => {
   const renderContent = () => {
     switch (selectedTab) {
       case "personal":
-        return userData ? <PersonalContent userData={userData} /> : <div>Loading...</div>; // Basically a if statament like the ones we used in C++ leetcode lol...
+        return userData ? <PersonalContent userData={userData} /> : <div className="flex items-center justify-center">Loading...</div>; // Basically a if statament like the ones we used in C++ leetcode lol...
       case "settings":
         return <SettingsContent />;
       case "security":
@@ -185,7 +185,7 @@ const Profile = () => {
       case "activity":
         return <ActivityContent />;
       default:
-        return userData ? <PersonalContent userData={userData} /> : <div>Loading...</div>;
+        return userData ? <PersonalContent userData={userData} /> : <div className="flex items-center justify-center">Loading...</div>;
     }
   };
 
