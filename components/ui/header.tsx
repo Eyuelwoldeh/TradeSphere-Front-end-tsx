@@ -2,7 +2,6 @@
 import Link from "next/link";
 import Logo from "./logo";
 import { Menu, MenuButton, MenuItem, MenuItems } from "@headlessui/react";
-import { ChevronDown, LayoutGrid } from "lucide-react";
 import clsx from 'clsx';
 import { getAuthToken } from "@/lib/auth";
 import { ChevronDown, LayoutGrid, FolderOpen, BarChart3, MessageSquare, Calendar, FileText, Settings, Users, Bell, Shield } from "lucide-react";
