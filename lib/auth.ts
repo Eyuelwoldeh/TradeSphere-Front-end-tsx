@@ -3,12 +3,16 @@ export const setAuthToken = (token: string) => {
 };
 
 export const getAuthToken = () => {
-    if (typeof window !== "undefined") { // Ensure it's running in the browser
-        console.log(localStorage.getItem("authToken"));
-        return localStorage.getItem("authToken");
+    if (typeof window === "undefined") {
+        console.log("localStorage is unavailable (running on server)");
+        return null;
     }
-    return null;
+    
+    const token = localStorage.getItem("authToken");
+    console.log("Retrieved token:", token);
+    return token;
 };
+
 
 export const removeAuthToken = () => {
     localStorage.removeItem("authToken");
