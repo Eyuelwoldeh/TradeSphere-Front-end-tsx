@@ -7,6 +7,7 @@ import { Settings, Activity, Shield } from "lucide-react";
 import { getAuthToken } from "@/lib/auth";
 import { useAuth } from "@/lib/api/useAuth";
 import { useEffect } from "react";
+import axiosInstance from "@/lib/axiosConfig";
 
 // Create content components for each tab
 
@@ -151,22 +152,13 @@ const Profile = () => {
   useEffect(() => {
     const profData = async () => {
       const token = getAuthToken();
-      const response = await fetch('users/profile', {
-      headers: {
-      'Authorization': `Bearer ${token}`,
-      },
-    });
-
-    const text = await response.text();  // Get the response as text
-    console.log(text);  // Log it to see the full response
-    if (response.ok) {
-      const data = JSON.parse(text);  // Parse as JSON if it's valid JSON
-      setUserData(data);
-    } else {
-      console.error('Error: ' + text);  // Log the error message if it's not JSON
-    }
-      const result = await response.json();
-      setUserData(result);
+      const response = await axiosInstance.get('users/profile', { // Use '/api/users/profile' instead of 'users/profile'
+        headers: {
+          'Authorization': `Bearer ${token}`,
+        },
+      });
+  
+      setUserData(response.data);
     };
 
     profData();
