@@ -6,9 +6,12 @@ import { Dialog } from "@headlessui/react";
 import { Settings, Activity, Shield } from "lucide-react";
 import { getAuthToken } from "@/lib/auth";
 import { useAuth } from "@/lib/api/useAuth";
+import { useEffect } from "react";
 
 // Create content components for each tab
-const PersonalContent = () => (
+
+
+const PersonalContent = ({userData} : {userData: any}) => (
   <div className="p-6">
     <h2 className="text-2xl font-bold text-white mb-4">Personal Information</h2>
     <div className="space-y-4">
@@ -17,7 +20,7 @@ const PersonalContent = () => (
         <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
           <div>
             <label className="block text-sm text-gray-400">Full Name</label>
-            <p className="text-white">John Doe</p>
+            <p className="text-white">{userData?.name}</p>
           </div>
           <div>
             <label className="block text-sm text-gray-400">Job Title</label>
@@ -25,7 +28,7 @@ const PersonalContent = () => (
           </div>
           <div>
             <label className="block text-sm text-gray-400">Email</label>
-            <p className="text-white">john.doe@example.com</p>
+            <p className="text-white">{userData?.email}</p>
           </div>
           <div>
             <label className="block text-sm text-gray-400">Phone</label>
@@ -134,6 +137,7 @@ const Profile = () => {
   useAuth();
 
   const router = useRouter();
+  const [userData, setUserData] = useState(null);
   const [isOpen, setIsOpen] = useState(false);
   const [selectedTab, setSelectedTab] = useState("personal");
 
@@ -143,6 +147,16 @@ const Profile = () => {
     { id: "security", label: "Security & Privacy", icon: Shield },
     { id: "activity", label: "Activity", icon: Activity },
   ];
+
+  useEffect(() => {
+    const profData = async () => {
+      const response = await fetch('users/profile');
+      const result = await response.json();
+      setUserData(result);
+    };
+
+    profData();
+  }, []);
 
   const handlePasswordChange = () => {
     router.push('/reset-password');
@@ -157,7 +171,7 @@ const Profile = () => {
   const renderContent = () => {
     switch (selectedTab) {
       case "personal":
-        return <PersonalContent />;
+        return userData ? <PersonalContent userData={userData} /> : <div>Loading...</div>; // Basically a if statament like the ones we used in C++ leetcode lol...
       case "settings":
         return <SettingsContent />;
       case "security":
@@ -165,7 +179,7 @@ const Profile = () => {
       case "activity":
         return <ActivityContent />;
       default:
-        return <PersonalContent />;
+        return userData ? <PersonalContent userData={userData} /> : <div>Loading...</div>;
     }
   };
 

@@ -16,7 +16,6 @@ export default function SignIn() {
     e.preventDefault();
     try {
       const userData = await login(email, password);
-      localStorage.setItem("user", JSON.stringify(userData));
       router.push("/profile");
     } catch (err) {
       setError("Invalid credentials");
