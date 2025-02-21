@@ -150,7 +150,12 @@ const Profile = () => {
 
   useEffect(() => {
     const profData = async () => {
-      const response = await fetch('users/profile');
+      const token = getAuthToken();
+      const response = await fetch('users/profile', {
+      headers: {
+      'Authorization': `Bearer ${token}`,
+      },
+    });
       const result = await response.json();
       setUserData(result);
     };
