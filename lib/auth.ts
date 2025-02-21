@@ -3,8 +3,11 @@ export const setAuthToken = (token: string) => {
 };
 
 export const getAuthToken = () => {
-    console.log(localStorage.getItem("authToken"));
-    return localStorage.getItem("authToken");
+    if (typeof window !== "undefined") { // Ensure it's running in the browser
+        console.log(localStorage.getItem("authToken"));
+        return localStorage.getItem("authToken");
+    }
+    return null;
 };
 
 export const removeAuthToken = () => {
