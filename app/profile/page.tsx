@@ -4,7 +4,7 @@ import { useRouter } from "next/navigation";
 import { UserCircle, LogOut } from "lucide-react";
 import { Dialog } from "@headlessui/react";
 import { Settings, Activity, Shield } from "lucide-react";
-import { getAuthToken } from "@/lib/auth";
+import { getAuthToken, removeAuthToken } from "@/lib/auth";
 import { useAuth } from "@/lib/api/useAuth";
 import { useEffect } from "react";
 import axiosInstance from "@/lib/axiosConfig";
@@ -141,6 +141,7 @@ const Profile = () => {
   const [userData, setUserData] = useState(null);
   const [isOpen, setIsOpen] = useState(false);
   const [selectedTab, setSelectedTab] = useState("personal");
+  const [isLoggedIn, setIsLoggedIn] = useState(getAuthToken() ? true : false);
 
   const menuItems = [
     { id: "personal", label: "Personal", icon: UserCircle },
@@ -242,6 +243,7 @@ const Profile = () => {
             <button
               onClick={() => {
                 setIsOpen(false);
+                removeAuthToken();
                 setTimeout(handleSignOut, 300);
               }}
               className="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700"

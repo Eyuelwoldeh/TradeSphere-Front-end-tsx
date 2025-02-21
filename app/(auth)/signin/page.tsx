@@ -4,6 +4,9 @@ import Link from "next/link";
 import {useState} from "react";
 import { login } from "../../../lib/api/authApi";
 import { useRouter } from "next/navigation";
+import { getAuthToken } from "@/lib/auth";
+
+
 
 export default function SignIn() {
 
@@ -11,6 +14,7 @@ export default function SignIn() {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const router = useRouter();
+  const [isLoggedIn, setIsLoggedIn] = useState(getAuthToken() ? true : false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
