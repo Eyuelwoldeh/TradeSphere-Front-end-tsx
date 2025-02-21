@@ -156,6 +156,15 @@ const Profile = () => {
       'Authorization': `Bearer ${token}`,
       },
     });
+
+    const text = await response.text();  // Get the response as text
+    console.log(text);  // Log it to see the full response
+    if (response.ok) {
+      const data = JSON.parse(text);  // Parse as JSON if it's valid JSON
+      setUserData(data);
+    } else {
+      console.error('Error: ' + text);  // Log the error message if it's not JSON
+    }
       const result = await response.json();
       setUserData(result);
     };
