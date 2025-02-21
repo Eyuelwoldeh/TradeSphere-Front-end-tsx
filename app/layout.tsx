@@ -57,7 +57,7 @@ export default function RootLayout({
 
     checkAuth();
     // Check periodically for token expiration
-    const interval = setInterval(checkAuth, 5000);
+    const interval = setInterval(checkAuth, 50);
 
     return () => clearInterval(interval);
   }, []);

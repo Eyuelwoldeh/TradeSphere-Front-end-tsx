@@ -9,7 +9,6 @@ export const getAuthToken = () => {
     }
     
     const token = localStorage.getItem("authToken");
-    console.log("Retrieved token:", token);
     return token;
 };
 

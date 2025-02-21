@@ -10,8 +10,5 @@ export const useAuth = () => {
         if (!token) {
             router.push("/signin"); // Redirect to login if no token
         }
-        else {
-            console.log(token);
-        }
     }, []);
 };
