@@ -5,6 +5,7 @@ import { Menu, MenuButton, MenuItem, MenuItems } from "@headlessui/react";
 import { ChevronDown, LayoutGrid } from "lucide-react";
 import clsx from 'clsx';
 import { getAuthToken } from "@/lib/auth";
+import { ChevronDown, LayoutGrid, FolderOpen, BarChart3, MessageSquare, Calendar, FileText, Settings, Users, Bell, Shield } from "lucide-react";
 
 
 export default function Header({ isLoggedIn = false }) {
@@ -12,6 +13,18 @@ export default function Header({ isLoggedIn = false }) {
     { href: '/settings', label: 'Settings' },
     { href: '/support', label: 'Support' },
     { href: '/license', label: 'License' },
+  ];
+
+  const dashboardItems = [
+    { href: '/dashboard', label: 'Dashboard', icon: LayoutGrid },
+    { href: '/projects', label: 'Projects', icon: FolderOpen },
+    { href: '/analytics', label: 'Analytics', icon: BarChart3 },
+    { href: '/messages', label: 'Messages', icon: MessageSquare },
+    { href: '/calendar', label: 'Calendar', icon: Calendar },
+    { href: '/files', label: 'Files', icon: FileText },
+    { href: '/team', label: 'Team', icon: Users },
+    { href: '/notifications', label: 'Alerts', icon: Bell },
+    { href: '/security', label: 'Security', icon: Shield }
   ];
 
   return (
@@ -59,33 +72,30 @@ export default function Header({ isLoggedIn = false }) {
               <>
                 {/* Dashboard navigation */}
                 <Menu as="div" className="relative mr-2">
-                  <MenuButton className="inline-flex items-center justify-center rounded-lg p-2 text-gray-300 hover:text-white hover:bg-gray-700/50 transition-all duration-150">
-                    <LayoutGrid className="h-5 w-5" />
-                  </MenuButton>
-                  <MenuItems className="absolute right-0 mt-2 w-60 origin-top-right rounded-lg bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
-                    <div className="grid grid-cols-3 gap-1 p-2">
-                      {[
-                        { href: '/dashboard', label: 'Dashboard', icon: 'LayoutGrid' },
-                        { href: '/projects', label: 'Projects', icon: 'Folder' },
-                        { href: '/analytics', label: 'Analytics', icon: 'BarChart' },
-                        { href: '/messages', label: 'Messages', icon: 'MessageSquare' },
-                        { href: '/calendar', label: 'Calendar', icon: 'Calendar' },
-                        { href: '/files', label: 'Files', icon: 'FileText' },
-                      ].map((item) => (
-                        <Link
-                          key={item.href}
-                          href={item.href}
-                          className="flex flex-col items-center justify-center p-2 rounded-lg hover:bg-gray-100 text-gray-700"
-                        >
-                          <div className="w-8 h-8 mb-1 flex items-center justify-center rounded-md bg-indigo-100 text-indigo-600">
-                            <LayoutGrid className="h-4 w-4" />
-                          </div>
-                          <span className="text-xs">{item.label}</span>
-                        </Link>
-                      ))}
-                    </div>
-                  </MenuItems>
-                </Menu>
+              <MenuButton className="inline-flex items-center justify-center rounded-lg p-2 text-gray-300 hover:text-white hover:bg-gray-700/50 transition-all duration-150">
+                <LayoutGrid className="h-5 w-5" />
+              </MenuButton>
+              <MenuItems className="absolute right-0 mt-2 w-72 origin-top-right rounded-lg bg-white p-3 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+                <div className="mb-2 px-2 text-sm font-semibold text-gray-900">Quick Access</div>
+                <div className="grid grid-cols-3 gap-2">
+                  {dashboardItems.map((item) => {
+                    const Icon = item.icon;
+                    return (
+                      <Link
+                        key={item.href}
+                        href={item.href}
+                        className="flex flex-col items-center justify-center rounded-lg p-3 hover:bg-gray-50 transition-colors duration-150"
+                      >
+                        <div className="mb-2 flex h-10 w-10 items-center justify-center rounded-full bg-indigo-50 text-indigo-600">
+                          <Icon className="h-5 w-5" />
+                        </div>
+                        <span className="text-xs font-medium text-gray-700">{item.label}</span>
+                      </Link>
+                    )}
+                  )}
+                </div>
+              </MenuItems>
+            </Menu>
 
                 {/* Account dropdown */}
                 <Menu as="div" className="relative">
