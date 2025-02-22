@@ -7,12 +7,16 @@ import { getAuthToken } from "@/lib/auth";
 import { ChevronDown, LayoutGrid, FolderOpen, BarChart3, MessageSquare, Calendar, FileText, Settings, Users, Bell, Shield } from "lucide-react";
 import { useAuth } from "@/lib/api/useAuth";
 
-type HeaderProps = {
-  isLoggedIn?: boolean;
-}
 
+export default function Header() {
+  const isLoggedInString = localStorage.getItem("isLoggedIn")
 
-export default function Header({ isLoggedIn }: HeaderProps ) {
+  let isloggedIn = false;
+
+  if (isLoggedInString == "true") {
+    isloggedIn = true;
+  }
+
   const links = [
     { href: '/settings', label: 'Settings' },
     { href: '/support', label: 'Support' },
@@ -86,7 +90,7 @@ export default function Header({ isLoggedIn }: HeaderProps ) {
 
           {/* Desktop auth links */}
           <div className="flex items-center gap-4">
-            {isLoggedIn ? (
+            {isloggedIn ? (
               <>
                 {/* Dashboard navigation */}
                 <Menu as="div" className="relative mr-2">

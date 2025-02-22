@@ -47,20 +47,8 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-
-  useEffect(() => {
-    // Check auth status on mount and update state
-    const checkAuth = () => {
-      setIsLoggedIn(!!getAuthToken());
-    };
-
-    checkAuth();
-    // Check periodically for token expiration
-    const interval = setInterval(checkAuth, 50);
-
-    return () => clearInterval(interval);
-  }, []);
+  
+  localStorage.setItem("isLoggedIn", "false")
 
   return (
     <html lang="en">
@@ -68,7 +56,7 @@ export default function RootLayout({
         className={`${inter.variable} ${nacelle.variable} bg-gray-950 font-inter text-base text-gray-200 antialiased`}
       >
         <div className="flex min-h-screen flex-col overflow-hidden supports-[overflow:clip]:overflow-clip">
-          <Header isLoggedIn={isLoggedIn}/>
+          <Header />
           {children}
           <Footer />
         </div>
