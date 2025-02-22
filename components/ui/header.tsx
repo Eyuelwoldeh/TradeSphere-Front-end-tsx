@@ -7,9 +7,12 @@ import { getAuthToken } from "@/lib/auth";
 import { ChevronDown, LayoutGrid, FolderOpen, BarChart3, MessageSquare, Calendar, FileText, Settings, Users, Bell, Shield } from "lucide-react";
 import { useAuth } from "@/lib/api/useAuth";
 
+type HeaderProps = {
+  isLoggedIn?: boolean;
+}
 
-export default function Header() {
-  const { isAuthenticated, isLoading } = useAuth(false);
+
+export default function Header({ isLoggedIn }: HeaderProps ) {
   const links = [
     { href: '/settings', label: 'Settings' },
     { href: '/support', label: 'Support' },
@@ -28,19 +31,19 @@ export default function Header() {
     { href: '/security', label: 'Security', icon: Shield }
   ];
 
-  if (isLoading) {
-    return (
-      <header className="sticky top-0 z-30 w-full backdrop-blur-sm">
-        <div className="mx-auto w-full px-4 sm:px-6">
-          <div className="flex h-16 items-center justify-between">
-            <div className="flex shrink-0 items-center mr-10">
-              <Logo />
-            </div>
-          </div>
-        </div>
-      </header>
-    );
-  }
+  // if (isLoading) {
+  //   return (
+  //     <header className="sticky top-0 z-30 w-full backdrop-blur-sm">
+  //       <div className="mx-auto w-full px-4 sm:px-6">
+  //         <div className="flex h-16 items-center justify-between">
+  //           <div className="flex shrink-0 items-center mr-10">
+  //             <Logo />
+  //           </div>
+  //         </div>
+  //       </div>
+  //     </header>
+  //   );
+  // }
 
   return (
     <header className="sticky top-0 z-30 w-full backdrop-blur-sm">
@@ -83,7 +86,7 @@ export default function Header() {
 
           {/* Desktop auth links */}
           <div className="flex items-center gap-4">
-            {isAuthenticated ? (
+            {isLoggedIn ? (
               <>
                 {/* Dashboard navigation */}
                 <Menu as="div" className="relative mr-2">
