@@ -135,7 +135,7 @@ const ActivityContent = () => (
 // Eyuel - Make sure to look out for hook errors. Only call hooks inside main functions...
 
 const Profile = () => {
-  useAuth();
+  const { isAuthenticated } = useAuth();
 
   const router = useRouter();
   const [userData, setUserData] = useState(null);

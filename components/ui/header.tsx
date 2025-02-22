@@ -5,9 +5,12 @@ import { Menu, MenuButton, MenuItem, MenuItems } from "@headlessui/react";
 import clsx from 'clsx';
 import { getAuthToken } from "@/lib/auth";
 import { ChevronDown, LayoutGrid, FolderOpen, BarChart3, MessageSquare, Calendar, FileText, Settings, Users, Bell, Shield } from "lucide-react";
+import { useAuth } from "@/lib/api/useAuth";
 
 
-export default function Header({ isLoggedIn = false }) {
+export default function Header() {
+
+  const { isAuthenticated } = useAuth(false);
   const links = [
     { href: '/settings', label: 'Settings' },
     { href: '/support', label: 'Support' },
@@ -67,7 +70,7 @@ export default function Header({ isLoggedIn = false }) {
 
           {/* Desktop auth links */}
           <div className="flex items-center gap-4">
-            {isLoggedIn ? (
+            {isAuthenticated ? (
               <>
                 {/* Dashboard navigation */}
                 <Menu as="div" className="relative mr-2">
