@@ -9,8 +9,7 @@ import { useAuth } from "@/lib/api/useAuth";
 
 
 export default function Header() {
-
-  const { isAuthenticated } = useAuth(false);
+  const { isAuthenticated, isLoading } = useAuth(false);
   const links = [
     { href: '/settings', label: 'Settings' },
     { href: '/support', label: 'Support' },
@@ -28,6 +27,20 @@ export default function Header() {
     { href: '/notifications', label: 'Alerts', icon: Bell },
     { href: '/security', label: 'Security', icon: Shield }
   ];
+
+  if (isLoading) {
+    return (
+      <header className="sticky top-0 z-30 w-full backdrop-blur-sm">
+        <div className="mx-auto w-full px-4 sm:px-6">
+          <div className="flex h-16 items-center justify-between">
+            <div className="flex shrink-0 items-center mr-10">
+              <Logo />
+            </div>
+          </div>
+        </div>
+      </header>
+    );
+  }
 
   return (
     <header className="sticky top-0 z-30 w-full backdrop-blur-sm">
