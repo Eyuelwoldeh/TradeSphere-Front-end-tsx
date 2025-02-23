@@ -48,8 +48,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   
-  localStorage.setItem("isLoggedIn", "false")
-
+  if (typeof window !== 'undefined') {
+    localStorage.setItem("isLoggedIn", "false")
+  }
+    
   return (
     <html lang="en">
       <body

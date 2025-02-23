@@ -9,12 +9,14 @@ import { useAuth } from "@/lib/api/useAuth";
 
 
 export default function Header() {
-  const isLoggedInString = localStorage.getItem("isLoggedIn")
 
   let isloggedIn = false;
 
-  if (isLoggedInString == "true") {
-    isloggedIn = true;
+  if (typeof window !== 'undefined') {
+    let isLoggedInString = localStorage.getItem("isLoggedIn");
+    if (isLoggedInString == "true") {
+      isloggedIn = true;
+    }
   }
 
   const links = [
