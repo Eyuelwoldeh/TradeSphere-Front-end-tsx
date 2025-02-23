@@ -10,7 +10,7 @@ import { useAuth } from "@/lib/api/useAuth";
 
 export default function Header() {
 
-  let isloggedIn = false;
+  let isloggedIn;
 
   if (typeof window !== 'undefined') {
     let isLoggedInString = localStorage.getItem("isLoggedIn");
