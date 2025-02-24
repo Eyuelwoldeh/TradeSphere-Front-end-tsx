@@ -141,7 +141,6 @@ const Profile = () => {
   const [userData, setUserData] = useState(null);
   const [isOpen, setIsOpen] = useState(false);
   const [selectedTab, setSelectedTab] = useState("personal");
-  const [isLoggedIn, setIsLoggedIn] = useState(getAuthToken() ? true : false);
 
   const menuItems = [
     { id: "personal", label: "Personal", icon: UserCircle },
@@ -152,6 +151,7 @@ const Profile = () => {
 
   useEffect(() => {
     const profData = async () => {
+      try {
       const token = getAuthToken();
       const response = await axiosInstance.get('users/profile', {
         headers: {
@@ -160,6 +160,10 @@ const Profile = () => {
       });
   
       setUserData(response.data);
+
+      } catch {
+        router.push('/signin')
+      }
     };
 
     profData();
@@ -171,6 +175,7 @@ const Profile = () => {
 
   const handleSignOut = () => {
     localStorage.removeItem("user");
+    window.dispatchEvent(new Event("storage"));
     router.push("/");
   };
 

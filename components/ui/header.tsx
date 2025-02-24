@@ -4,20 +4,30 @@ import Logo from "./logo";
 import { Menu, MenuButton, MenuItem, MenuItems } from "@headlessui/react";
 import clsx from 'clsx';
 import { getAuthToken } from "@/lib/auth";
+import { useState, useEffect } from "react";
 import { ChevronDown, LayoutGrid, FolderOpen, BarChart3, MessageSquare, Calendar, FileText, Settings, Users, Bell, Shield } from "lucide-react";
 import { useAuth } from "@/lib/api/useAuth";
 
 
 export default function Header() {
 
-  let isloggedIn;
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-  if (typeof window !== 'undefined') {
-    let isLoggedInString = localStorage.getItem("isLoggedIn");
-    if (isLoggedInString == "true") {
-      isloggedIn = true;
-    }
-  }
+  useEffect(() => {
+    const storedValue = localStorage.getItem("isLoggedIn");
+    setIsLoggedIn(storedValue === "true");
+
+    // Listen for changes in localStorage
+    const handleStorageChange = () => {
+      setIsLoggedIn(localStorage.getItem("isLoggedIn") === "true");
+    };
+
+    window.addEventListener("storage", handleStorageChange);
+
+    return () => {
+      window.removeEventListener("storage", handleStorageChange);
+    };
+  }, []);
 
   const links = [
     { href: '/settings', label: 'Settings' },
@@ -92,7 +102,7 @@ export default function Header() {
 
           {/* Desktop auth links */}
           <div className="flex items-center gap-4">
-            {isloggedIn ? (
+            {isLoggedIn ? (
               <>
                 {/* Dashboard navigation */}
                 <Menu as="div" className="relative mr-2">
