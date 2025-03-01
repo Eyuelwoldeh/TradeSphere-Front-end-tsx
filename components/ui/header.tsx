@@ -133,7 +133,7 @@ export default function Header() {
 
                 {/* Account dropdown */}
                 <Menu as="div" className="relative">
-                  <MenuButton className="inline-flex items-center justify-center rounded-lg bg-oklch(0.681 0.162 75.834) px-4 py-2 text-sm font-medium text-white hover:bg-indigo-500 transition-colors duration-150">
+                  <MenuButton className="inline-flex items-center justify-center rounded-lg /55 px-4 py-2 text-sm font-medium text-white hover:bg-indigo-500 transition-colors duration-150">
                     {({ open }) => (
                       <>
                         My Account
@@ -187,7 +187,7 @@ export default function Header() {
                 </Link>
                 <Link
                   href="/signup"
-                  className="inline-flex items-center justify-center rounded-lg bg-oklch(0.681 0.162 75.834) px-4 py-2 text-sm font-medium text-white hover:bg-indigo-500 transition-colors duration-150"
+                  className="inline-flex items-center justify-center rounded-lg bg-amber-500 px-4 py-2 text-sm font-medium text-white hover:bg-indigo-500 transition-colors duration-150"
                 >
                   Sign Up
                 </Link>
