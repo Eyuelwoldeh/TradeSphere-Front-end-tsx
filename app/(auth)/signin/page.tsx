@@ -1,104 +1,100 @@
 "use client";
 
 import Link from "next/link";
-import {useState} from "react";
+import { useState } from "react";
 import { login } from "../../../lib/api/authApi";
 import { useRouter } from "next/navigation";
-import { getAuthToken } from "@/lib/auth";
-
-
 
 export default function SignIn() {
-
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
   const router = useRouter();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setError("");
+    setLoading(true);
+    
     try {
       const userData = await login(email, password);
       router.push("/profile");
     } catch (err) {
-      setError("Invalid credentials");
+      setError("Invalid credentials. Please try again.");
+    } finally {
+      setLoading(false);
     }
   };
 
   return (
-    <section>
-      <div className="mx-auto max-w-6xl px-4 sm:px-6">
-        <div className="py-12 md:py-20">
-          {/* Section header */}
-          <div className="pb-12 text-center">
-            <h1 className="animate-[gradient_6s_linear_infinite] bg-[linear-gradient(to_right,var(--color-gray-200),var(--color-indigo-200),var(--color-gray-50),var(--color-indigo-300),var(--color-gray-200))] bg-[length:200%_auto] bg-clip-text font-nacelle text-3xl font-semibold text-transparent md:text-4xl">
-              Welcome back
-            </h1>
-            {error && <p className="text-red-500 text-center mt-2">{error}</p>}
-          </div>
-          {/* Contact form */}
-          <form onSubmit={handleSubmit} className="mx-auto max-w-[400px]">
-            <div className="space-y-5">
-              <div>
-                <label
-                  className="mb-1 block text-sm font-medium text-indigo-200/65"
-                  htmlFor="email"
-                >
-                  Email
+    <div className="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4">
+      <div className="max-w-md w-full">
+        <div className="bg-white rounded border border-gray-200 p-8">
+          <h1 className="text-3xl font-bold text-gray-900 mb-2">Sign In</h1>
+          <p className="text-gray-600 mb-8">Access your account</p>
+          
+          {error && (
+            <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded mb-6 text-sm">
+              {error}
+            </div>
+          )}
+
+          <form onSubmit={handleSubmit} className="space-y-6">
+            <div>
+              <label className="block text-sm font-medium text-gray-900 mb-2" htmlFor="email">
+                Email
+              </label>
+              <input
+                id="email"
+                type="email"
+                required
+                className="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-gray-900 focus:border-transparent"
+                placeholder="you@example.com"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+              />
+            </div>
+
+            <div>
+              <div className="flex items-center justify-between mb-2">
+                <label className="block text-sm font-medium text-gray-900" htmlFor="password">
+                  Password
                 </label>
-                <input
-                  id="email"
-                  type="email"
-                  className="form-input w-full"
-                  placeholder="Your email"
-                  onChange={(e) => setEmail(e.target.value)}
-                />
+                <Link href="/reset-password" className="text-sm text-gray-600 hover:text-gray-900">
+                  Forgot?
+                </Link>
               </div>
-              <div>
-                <div className="mb-1 flex items-center justify-between gap-3">
-                  <label
-                    className="block text-sm font-medium text-indigo-200/65"
-                    htmlFor="password"
-                  >
-                    Password
-                  </label>
-                  <Link
-                    className="text-sm text-gray-600 hover:underline"
-                    href="/reset-password"
-                  >
-                    Forgot?
-                  </Link>
-                </div>
-                <input
-                  id="password"
-                  type="password"
-                  className="form-input w-full"
-                  placeholder="Your password"
-                  onChange={(e) => setPassword(e.target.value)}
-                />
-              </div>
+              <input
+                id="password"
+                type="password"
+                required
+                className="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-gray-900 focus:border-transparent"
+                placeholder="Enter password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+              />
             </div>
-            <div className="mt-6 space-y-5">
-              <button className="btn w-full bg-linear-to-t from-indigo-600 to-indigo-500 bg-[length:100%_100%] bg-[bottom] text-white shadow-[inset_0px_1px_0px_0px_--theme(--color-white/.16)] hover:bg-[length:100%_150%]">
-                Sign in
-              </button>
-              <div className="flex items-center gap-3 text-center text-sm italic text-gray-600 before:h-px before:flex-1 before:bg-linear-to-r before:from-transparent before:via-gray-400/25 after:h-px after:flex-1 after:bg-linear-to-r after:from-transparent after:via-gray-400/25">
-                or
-              </div>
-              <button className="btn relative w-full bg-linear-to-b from-gray-800 to-gray-800/60 bg-[length:100%_100%] bg-[bottom] text-gray-300 before:pointer-events-none before:absolute before:inset-0 before:rounded-[inherit] before:border before:border-transparent before:[background:linear-gradient(to_right,var(--color-gray-800),var(--color-gray-700),var(--color-gray-800))_border-box] before:[mask-composite:exclude_!important] before:[mask:linear-gradient(white_0_0)_padding-box,_linear-gradient(white_0_0)] hover:bg-[length:100%_150%]">
-                Sign In with Google
-              </button>
-            </div>
+
+            <button
+              type="submit"
+              disabled={loading}
+              className="w-full py-3 bg-gray-900 text-white rounded font-medium hover:bg-gray-800 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+            >
+              {loading ? "Signing in..." : "Sign In"}
+            </button>
           </form>
-          {/* Bottom link */}
-          <div className="mt-6 text-center text-sm text-indigo-200/65">
-            Don't you have an account?{" "}
-            <Link className="font-medium text-indigo-500" href="/signup">
-              Sign Up
-            </Link>
+
+          <div className="mt-6 text-center">
+            <p className="text-gray-600 text-sm">
+              Don't have an account?{" "}
+              <Link href="/signup" className="text-gray-900 hover:underline font-medium">
+                Sign Up
+              </Link>
+            </p>
           </div>
         </div>
       </div>
-    </section>
+    </div>
   );
 }

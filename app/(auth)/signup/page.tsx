@@ -9,157 +9,182 @@ export default function SignUp() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [role, setRole] = useState("importer"); // Default role
+  const [role, setRole] = useState("importer");
   const [company, setCompany] = useState("");
   const [location, setLocation] = useState("");
   const [tradeInterests, setTradeInterests] = useState<string[]>([]);
   const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
   const router = useRouter();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setError("");
+    setLoading(true);
+    
     try {
       const userData = await register(name, email, password, role, company, location, tradeInterests);
-      router.push("/profile");
-    } catch (err) {
-      setError("Registration failed. Please try again.");
+      router.push("/signin");
+    } catch (err: any) {
+      setError(err?.response?.data?.message || "Registration failed. Please try again.");
+    } finally {
+      setLoading(false);
     }
   };
 
   return (
-    <section>
-      <div className="mx-auto max-w-6xl px-4 sm:px-6">
-        <div className="py-12 md:py-20">
-          {/* Section header */}
-          <div className="pb-12 text-center">
-            <h1 className="animate-[gradient_6s_linear_infinite] bg-[linear-gradient(to_right,var(--color-gray-200),var(--color-indigo-200),var(--color-gray-50),var(--color-indigo-300),var(--color-gray-200))] bg-[length:200%_auto] bg-clip-text font-nacelle text-3xl font-semibold text-transparent md:text-4xl">
-              Create an account
-            </h1>
-            <span className="text-red-500">*</span> indicates required field
-          </div>
-          {/* Contact form */}
-          <form onSubmit={handleSubmit} className="mx-auto max-w-[400px]">
-            <div className="space-y-5">
+    <div className="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4">
+      <div className="max-w-2xl w-full">
+        <div className="bg-white rounded border border-gray-200 p-8">
+          <h1 className="text-3xl font-bold text-gray-900 mb-2">Create Account</h1>
+          <p className="text-gray-600 mb-8">Start trading globally</p>
+          
+          {error && (
+            <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded mb-6 text-sm">
+              {error}
+            </div>
+          )}
+
+          <form onSubmit={handleSubmit} className="space-y-6">
+            <div className="grid md:grid-cols-2 gap-6">
               <div>
-                <label className="mb-1 block text-sm font-medium text-indigo-200/65" htmlFor="name">
-                  Name <span className="text-red-500">*</span>
+                <label className="block text-sm font-medium text-gray-900 mb-2" htmlFor="name">
+                  Full Name <span className="text-red-600">*</span>
                 </label>
                 <input
                   id="name"
                   type="text"
-                  className="form-input w-full"
-                  placeholder="Your full name"
                   required
+                  className="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-gray-900 focus:border-transparent"
+                  placeholder="John Doe"
                   value={name}
                   onChange={(e) => setName(e.target.value)}
                 />
               </div>
+
               <div>
-                <label className="mb-1 block text-sm font-medium text-indigo-200/65" htmlFor="company">
-                  Company Name <span className="text-red-500">*</span>
-                </label>
-                <input
-                  id="company"
-                  type="text"
-                  className="form-input w-full"
-                  placeholder="Your company name"
-                  required
-                  value={company}
-                  onChange={(e) => setCompany(e.target.value)}
-                />
-              </div>
-              <div>
-                <label className="mb-1 block text-sm font-medium text-indigo-200/65" htmlFor="email">
-                  Work Email <span className="text-red-500">*</span>
+                <label className="block text-sm font-medium text-gray-900 mb-2" htmlFor="email">
+                  Work Email <span className="text-red-600">*</span>
                 </label>
                 <input
                   id="email"
                   type="email"
-                  className="form-input w-full"
-                  placeholder="Your work email"
                   required
+                  className="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-gray-900 focus:border-transparent"
+                  placeholder="you@company.com"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                 />
               </div>
+            </div>
+
+            <div className="grid md:grid-cols-2 gap-6">
               <div>
-                <label className="block text-sm font-medium text-indigo-200/65" htmlFor="password">
-                  Password <span className="text-red-500">*</span>
+                <label className="block text-sm font-medium text-gray-900 mb-2" htmlFor="company">
+                  Company <span className="text-red-600">*</span>
                 </label>
                 <input
-                  id="password"
-                  type="password"
-                  className="form-input w-full"
-                  placeholder="Password (at least 10 characters)"
+                  id="company"
+                  type="text"
                   required
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
+                  className="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-gray-900 focus:border-transparent"
+                  placeholder="Company name"
+                  value={company}
+                  onChange={(e) => setCompany(e.target.value)}
                 />
               </div>
+
               <div>
-                <label className="block text-sm font-medium text-indigo-200/65" htmlFor="role">
-                  Role <span className="text-red-500">*</span>
-                </label>
-                <select
-                  id="role"
-                  className="form-input w-full"
-                  value={role}
-                  onChange={(e) => setRole(e.target.value)}
-                >
-                  <option value="importer">Importer</option>
-                  <option value="exporter">Exporter</option>
-                  <option value="admin"></option>
-                  <option value="admin">Admin</option>
-                </select>
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-indigo-200/65" htmlFor="location">
-                  Location <span className="text-red-500">*</span>
+                <label className="block text-sm font-medium text-gray-900 mb-2" htmlFor="location">
+                  Location <span className="text-red-600">*</span>
                 </label>
                 <input
                   id="location"
                   type="text"
-                  className="form-input w-full"
-                  placeholder="Your location"
                   required
+                  className="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-gray-900 focus:border-transparent"
+                  placeholder="City, Country"
                   value={location}
                   onChange={(e) => setLocation(e.target.value)}
                 />
               </div>
-              <div>
-                <label className="block text-sm font-medium text-indigo-200/65" htmlFor="tradeInterest">
-                  Trade Interests (use mouse to drag accross and select multiple)<span className="text-red-500">*</span>
-                </label>
-                <select
-                  multiple
-                  id="tradeInterests"
-                  className="form-input w-full"
-                  onChange={(e) =>
+            </div>
+
+            <div>
+              <label className="block text-sm font-medium text-gray-900 mb-2" htmlFor="password">
+                Password <span className="text-red-600">*</span>
+              </label>
+              <input
+                id="password"
+                type="password"
+                required
+                minLength={10}
+                className="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-gray-900 focus:border-transparent"
+                placeholder="Minimum 10 characters"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+              />
+            </div>
+
+            <div>
+              <label className="block text-sm font-medium text-gray-900 mb-2" htmlFor="role">
+                Account Type <span className="text-red-600">*</span>
+              </label>
+              <select
+                id="role"
+                required
+                className="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-gray-900 focus:border-transparent"
+                value={role}
+                onChange={(e) => setRole(e.target.value)}
+              >
+                <option value="importer">Importer</option>
+                <option value="exporter">Exporter</option>
+                <option value="admin">Admin</option>
+              </select>
+            </div>
+
+            <div>
+              <label className="block text-sm font-medium text-gray-900 mb-2" htmlFor="tradeInterests">
+                Trade Interests <span className="text-red-600">*</span>
+              </label>
+              <p className="text-xs text-gray-500 mb-2">Hold Ctrl (Cmd on Mac) to select multiple</p>
+              <select
+                multiple
+                id="tradeInterests"
+                required
+                className="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-gray-900 focus:border-transparent min-h-[100px]"
+                onChange={(e) =>
                   setTradeInterests(Array.from(e.target.selectedOptions, (option) => option.value))
-                  }
-                  >
-                    <option value="coffee">Coffee</option>
-                    <option value="tea">Tea</option>
-                    <option value="machinery">Machinery</option>
-                  </select>
-              </div>
+                }
+              >
+                <option value="coffee">Coffee</option>
+                <option value="tea">Tea</option>
+                <option value="machinery">Machinery</option>
+                <option value="textiles">Textiles</option>
+                <option value="electronics">Electronics</option>
+                <option value="agriculture">Agriculture</option>
+              </select>
             </div>
-            <div className="mt-6 space-y-5">
-              <button className="btn w-full bg-linear-to-t from-indigo-600 to-indigo-500 bg-[length:100%_100%] bg-[bottom] text-white shadow-[inset_0px_1px_0px_0px_--theme(--color-white/.16)] hover:bg-[length:100%_150%]">
-                Register
-              </button>
-            </div>
+
+            <button
+              type="submit"
+              disabled={loading}
+              className="w-full py-3 bg-gray-900 text-white rounded font-medium hover:bg-gray-800 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+            >
+              {loading ? "Creating account..." : "Create Account"}
+            </button>
           </form>
-          {error && <p className="text-red-500 text-center mt-4">{error}</p>}
-          {/* Bottom link */}
-          <div className="mt-6 text-center text-sm text-indigo-200/65">
-            Already have an account?{" "}
-            <Link className="font-medium text-indigo-500" href="/signin">
-              Sign in
-            </Link>
+
+          <div className="mt-6 text-center">
+            <p className="text-gray-600 text-sm">
+              Already have an account?{" "}
+              <Link href="/signin" className="text-gray-900 hover:underline font-medium">
+                Sign In
+              </Link>
+            </p>
           </div>
         </div>
       </div>
-    </section>
+    </div>
   );
 }
