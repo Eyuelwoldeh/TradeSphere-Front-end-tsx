@@ -43,18 +43,19 @@ export default function Header() {
 
           {/* Navigation */}
           <nav className="hidden md:flex items-center space-x-8">
-            <Link href="/" className="text-gray-700 hover:text-gray-900 transition-colors">
+            <Link href="/browse" className="text-gray-700 hover:text-gray-900 transition-colors font-medium">
               Browse
             </Link>
+            <Link href="/features" className="text-gray-700 hover:text-gray-900 transition-colors">
+              Features
+            </Link>
+            <Link href="/contribs" className="text-gray-700 hover:text-gray-900 transition-colors">
+              About
+            </Link>
             {isLoggedIn && (
-              <>
-                <Link href="/profile" className="text-gray-700 hover:text-gray-900 transition-colors">
-                  Account
-                </Link>
-                <Link href="/trades" className="text-gray-700 hover:text-gray-900 transition-colors">
-                  My Trades
-                </Link>
-              </>
+              <Link href="/profile" className="text-gray-700 hover:text-gray-900 transition-colors">
+                Profile
+              </Link>
             )}
           </nav>
 

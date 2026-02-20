@@ -66,22 +66,30 @@ export default function Home() {
           <h2 className="text-3xl font-bold text-gray-900 mb-3">What You Can Do</h2>
           <p className="text-gray-600 mb-10">Essential features for trading</p>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            <div className="p-6 bg-white border border-gray-200 rounded">
-              <div className="font-semibold text-gray-900 mb-2">Browse Listings</div>
+            <Link href="/browse" className="p-6 bg-white border border-gray-200 rounded hover:border-indigo-500 hover:shadow-md transition-all group">
+              <div className="text-4xl mb-3">🔍</div>
+              <div className="font-semibold text-gray-900 mb-2 group-hover:text-indigo-600">Browse Listings</div>
               <p className="text-sm text-gray-600">Search products across multiple categories and find what you need</p>
-            </div>
-            <div className="p-6 bg-white border border-gray-200 rounded">
-              <div className="font-semibold text-gray-900 mb-2">Message Traders</div>
+              <div className="mt-3 text-indigo-600 text-sm font-medium">Explore →</div>
+            </Link>
+            <Link href="/signin" className="p-6 bg-white border border-gray-200 rounded hover:border-indigo-500 hover:shadow-md transition-all group">
+              <div className="text-4xl mb-3">💬</div>
+              <div className="font-semibold text-gray-900 mb-2 group-hover:text-indigo-600">Message Traders</div>
               <p className="text-sm text-gray-600">Chat directly with buyers and sellers to negotiate deals</p>
-            </div>
-            <div className="p-6 bg-white border border-gray-200 rounded">
-              <div className="font-semibold text-gray-900 mb-2">Manage Trades</div>
+              <div className="mt-3 text-indigo-600 text-sm font-medium">Sign in →</div>
+            </Link>
+            <Link href="/profile" className="p-6 bg-white border border-gray-200 rounded hover:border-indigo-500 hover:shadow-md transition-all group">
+              <div className="text-4xl mb-3">📊</div>
+              <div className="font-semibold text-gray-900 mb-2 group-hover:text-indigo-600">Manage Trades</div>
               <p className="text-sm text-gray-600">Track your ongoing trades and transaction history</p>
-            </div>
-            <div className="p-6 bg-white border border-gray-200 rounded">
-              <div className="font-semibold text-gray-900 mb-2">Secure Accounts</div>
+              <div className="mt-3 text-indigo-600 text-sm font-medium">View demo →</div>
+            </Link>
+            <Link href="/features" className="p-6 bg-white border border-gray-200 rounded hover:border-indigo-500 hover:shadow-md transition-all group">
+              <div className="text-4xl mb-3">🔒</div>
+              <div className="font-semibold text-gray-900 mb-2 group-hover:text-indigo-600">Secure Accounts</div>
               <p className="text-sm text-gray-600">Your data is protected with secure authentication</p>
-            </div>
+              <div className="mt-3 text-indigo-600 text-sm font-medium">Learn more →</div>
+            </Link>
           </div>
         </div>
       </div>
@@ -93,13 +101,22 @@ export default function Home() {
           <p className="text-gray-600 mb-10">Browse available trading categories</p>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             {categories.map((category) => (
-              <div
+              <Link
                 key={category}
-                className="p-4 bg-white border border-gray-200 rounded text-center"
+                href="/browse"
+                className="p-4 bg-white border border-gray-200 rounded text-center hover:border-indigo-500 hover:shadow-sm transition-all"
               >
                 <div className="font-medium text-gray-900">{category}</div>
-              </div>
+              </Link>
             ))}
+          </div>
+          <div className="text-center mt-8">
+            <Link
+              href="/browse"
+              className="inline-block px-8 py-3 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-colors font-medium"
+            >
+              View All Listings
+            </Link>
           </div>
         </div>
       </div>
