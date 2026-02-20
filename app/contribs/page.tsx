@@ -1,99 +1,95 @@
-"use client";
-
-import { FaCode, FaBullhorn, FaLightbulb, FaHeart } from "react-icons/fa";
-
-export default function ContributePage() {
+export default function ContribsPage() {
   return (
-    <section className="mx-auto max-w-6xl px-4 py-12 sm:px-6">
-      <div className="text-center" data-aos="fade-up">
-        <h1 className="animate-[gradient_6s_linear_infinite] bg-[linear-gradient(to_right,var(--color-gray-200),var(--color-indigo-200),var(--color-gray-50),var(--color-indigo-300),var(--color-gray-200))] bg-[length:200%_auto] bg-clip-text pb-5 font-nacelle text-4xl font-semibold text-transparent md:text-5xl">
-          How to Contribute
-        </h1>
-        <p className="mt-4 text-xl text-indigo-200/65">
-          Help shape the future of trade analytics by contributing to our platform.
-        </p>
+    <div className="min-h-screen bg-gradient-to-b from-gray-900 to-gray-800">
+      <div className="max-w-4xl mx-auto px-4 py-16 sm:px-6 lg:py-24">
+        <div className="text-center mb-12">
+          <h1 className="animate-[gradient_6s_linear_infinite] bg-[linear-gradient(to_right,var(--color-gray-200),var(--color-indigo-200),var(--color-gray-50),var(--color-indigo-300),var(--color-gray-200))] bg-[length:200%_auto] bg-clip-text font-nacelle text-5xl font-bold text-transparent mb-4">
+            About TradeSphere
+          </h1>
+          <p className="text-xl text-indigo-200/75">
+            A student project to connect buyers and sellers
+          </p>
+        </div>
+
+        <div className="bg-gray-800/50 backdrop-blur-sm border border-gray-700/50 rounded-2xl p-8 mb-8">
+          <h2 className="text-2xl font-bold text-white mb-4">The Project</h2>
+          <p className="text-gray-300 leading-relaxed mb-4">
+            TradeSphere is an MVP trading platform developed as a full-stack project. 
+            It allows users to create accounts, browse product categories, message other traders, 
+            and manage their trades in a secure environment.
+          </p>
+          <p className="text-gray-300 leading-relaxed">
+            Currently in pilot phase with 100+ active users testing the core functionality 
+            including authentication, messaging, and trade management features.
+          </p>
+        </div>
+
+        <div className="bg-gray-800/50 backdrop-blur-sm border border-gray-700/50 rounded-2xl p-8 mb-8">
+          <h2 className="text-2xl font-bold text-white mb-4">Key Features</h2>
+          <ul className="space-y-3 text-gray-300">
+            <li className="flex items-start gap-3">
+              <span className="text-indigo-400 mt-1">✓</span>
+              <span>Secure user authentication and account management</span>
+            </li>
+            <li className="flex items-start gap-3">
+              <span className="text-indigo-400 mt-1">✓</span>
+              <span>Real-time messaging between users</span>
+            </li>
+            <li className="flex items-start gap-3">
+              <span className="text-indigo-400 mt-1">✓</span>
+              <span>Browse and search across 8 product categories</span>
+            </li>
+            <li className="flex items-start gap-3">
+              <span className="text-indigo-400 mt-1">✓</span>
+              <span>Fast performance with optimized caching</span>
+            </li>
+            <li className="flex items-start gap-3">
+              <span className="text-indigo-400 mt-1">✓</span>
+              <span>Clean, intuitive user interface</span>
+            </li>
+          </ul>
+        </div>
+
+        <div className="bg-gray-800/50 backdrop-blur-sm border border-gray-700/50 rounded-2xl p-8 mb-8">
+          <h2 className="text-2xl font-bold text-white mb-4">Current Status</h2>
+          <div className="space-y-4">
+            <div className="flex items-center justify-between p-4 bg-gray-900/50 rounded-lg">
+              <span className="text-gray-300">Pilot Users</span>
+              <span className="text-indigo-400 font-semibold">100+</span>
+            </div>
+            <div className="flex items-center justify-between p-4 bg-gray-900/50 rounded-lg">
+              <span className="text-gray-300">Product Categories</span>
+              <span className="text-indigo-400 font-semibold">8</span>
+            </div>
+            <div className="flex items-center justify-between p-4 bg-gray-900/50 rounded-lg">
+              <span className="text-gray-300">Performance Improvement</span>
+              <span className="text-indigo-400 font-semibold">50% faster</span>
+            </div>
+            <div className="flex items-center justify-between p-4 bg-gray-900/50 rounded-lg">
+              <span className="text-gray-300">Phase</span>
+              <span className="text-indigo-400 font-semibold">MVP Testing</span>
+            </div>
+          </div>
+        </div>
+
+        <div className="text-center">
+          <a 
+            href="/signup"
+            className="inline-block px-8 py-3 bg-indigo-500 text-white rounded-lg hover:bg-indigo-600 transition-colors font-medium"
+          >
+            Join the Pilot Program
+          </a>
+        </div>
+
+        <div className="mt-8 text-center">
+          <a 
+            href="/"
+            className="inline-flex items-center gap-2 text-indigo-400 hover:text-indigo-300 transition-colors"
+          >
+            ← Back to Home
+          </a>
+        </div>
       </div>
-
-      <div className="mt-12 grid gap-8 md:grid-cols-2 lg:grid-cols-4">
-        {/* Improve the Code */}
-        <div
-          className="group relative overflow-hidden rounded-2xl border border-gray-700 bg-gray-900/50 p-6 shadow-lg transition hover:shadow-2xl"
-          data-aos="fade-up"
-          data-aos-delay="200"
-        >
-          <FaCode className="text-indigo-400 text-4xl" />
-          <h2 className="mt-4 text-xl font-semibold text-white">Improve the Code</h2>
-          <p className="mt-2 text-gray-300">
-            Developers can contribute by refining our{" "}
-            <a
-              href="https://github.com/Eyuelwoldeh/TradeSphere-Front-end-tsx"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-indigo-400 hover:underline"
-            >
-              GitHub repository
-            </a>
-            , fixing issues, and optimizing performance.
-          </p>
-        </div>
-
-        {/* Spread the Word */}
-        <div
-          className="group relative overflow-hidden rounded-2xl border border-gray-700 bg-gray-900/50 p-6 shadow-lg transition hover:shadow-2xl"
-          data-aos="fade-up"
-          data-aos-delay="400"
-        >
-          <FaBullhorn className="text-indigo-400 text-4xl" />
-          <h2 className="mt-4 text-xl font-semibold text-white">Spread the Word</h2>
-          <p className="mt-2 text-gray-300">
-            Share our project with your network and help us reach a wider audience.
-          </p>
-        </div>
-
-        {/* Suggest Features */}
-        <div
-          className="group relative overflow-hidden rounded-2xl border border-gray-700 bg-gray-900/50 p-6 shadow-lg transition hover:shadow-2xl"
-          data-aos="fade-up"
-          data-aos-delay="600"
-        >
-          <FaLightbulb className="text-indigo-400 text-4xl" />
-          <h2 className="mt-4 text-xl font-semibold text-white">Suggest Features</h2>
-          <p className="mt-2 text-gray-300">
-            Have an idea? Open a{" "}
-            <a
-              href="https://github.com/Eyuelwoldeh/TradeSphere-Front-end-tsx/issues"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-indigo-400 hover:underline"
-            >
-              GitHub issue
-            </a>{" "}
-            and let us know!
-          </p>
-        </div>
-
-        {/* Support the Project */}
-        <div
-          className="group relative overflow-hidden rounded-2xl border border-gray-700 bg-gray-900/50 p-6 shadow-lg transition hover:shadow-2xl"
-          data-aos="fade-up"
-          data-aos-delay="800"
-        >
-          <FaHeart className="text-indigo-400 text-4xl" />
-          <h2 className="mt-4 text-xl font-semibold text-white">Support the Project</h2>
-          <p className="mt-2 text-gray-300">
-            Love our work? Consider{" "}
-            <a
-              href="https://patreon.com/Avenis-TradeSphere"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-indigo-400 hover:underline"
-            >
-              supporting us on Patreon
-            </a>
-            .
-          </p>
-        </div>
-      </div>
-    </section>
+    </div>
   );
 }

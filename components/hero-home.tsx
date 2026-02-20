@@ -12,7 +12,7 @@ export default function HeroHome() {
               className="animate-[gradient_6s_linear_infinite] bg-[linear-gradient(to_right,var(--color-gray-200),var(--color-indigo-200),var(--color-gray-50),var(--color-indigo-300),var(--color-gray-200))] bg-[length:200%_auto] bg-clip-text pb-5 font-nacelle text-4xl font-semibold text-transparent md:text-5xl"
               data-aos="fade-up"
             >
-              Avenis - The Future of Global Trade
+              TradeSphere - Secure Trading Platform
             </h1>
             <div className="mx-auto max-w-3xl">
               <p
@@ -20,8 +20,8 @@ export default function HeroHome() {
                 data-aos="fade-up"
                 data-aos-delay={200}
               >
-                A one stop shop for all your needs. From calculating import costs to connecting
-                with global leaders in your desired market.
+                Connect with verified traders, message directly, and manage your deals securely.
+                Currently testing with 100+ pilot users across 8 product categories.
               </p>
               <div className="mx-auto max-w-xs sm:flex sm:max-w-none sm:justify-center">
                 <div data-aos="fade-up" data-aos-delay={400}>
@@ -30,7 +30,7 @@ export default function HeroHome() {
                     href="/signup"
                   >
                     <span className="relative inline-flex items-center">
-                      Become a Member
+                      Join Pilot Program
                       <span className="ml-1 tracking-normal text-white/50 transition-transform group-hover:translate-x-0.5">
                         -&gt;
                       </span>

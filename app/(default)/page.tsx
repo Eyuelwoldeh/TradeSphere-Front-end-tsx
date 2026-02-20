@@ -1,20 +1,13 @@
 export const metadata = {
-  title: "TradeSphere - Global Trade Marketplace",
-  description: "Connect importers and exporters worldwide",
+  title: "TradeSphere - Trading Platform MVP",
+  description: "Secure trading platform connecting buyers and sellers",
 };
 
 import Link from "next/link";
 
 const categories = [
-  "Coffee", "Tea", "Cocoa", "Spices", "Grains", "Rice", 
-  "Wheat", "Corn", "Soybeans", "Sugar", "Cotton", "Rubber",
-  "Timber", "Paper", "Textiles", "Apparel", "Footwear", "Leather",
-  "Machinery", "Tools", "Equipment", "Vehicles", "Auto Parts", "Aircraft Parts",
-  "Electronics", "Computers", "Semiconductors", "Telecom", "Medical Devices", "Lab Equipment",
-  "Chemicals", "Plastics", "Pharmaceuticals", "Cosmetics", "Fertilizers", "Pesticides",
-  "Metals", "Steel", "Aluminum", "Copper", "Gold", "Silver",
-  "Oil & Gas", "Coal", "Minerals", "Diamonds", "Gemstones", "Stone",
-  "Furniture", "Building Materials", "Ceramics", "Glass", "Packaging", "Labels"
+  "Electronics", "Textiles", "Machinery", "Chemicals", 
+  "Food & Agriculture", "Consumer Goods", "Building Materials", "Metals"
 ];
 
 export default function Home() {
@@ -24,18 +17,18 @@ export default function Home() {
       <div className="bg-white border-b">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
           <h1 className="text-5xl md:text-6xl font-bold mb-6 text-gray-900">
-            Trade Globally
+            Secure Trade Platform
           </h1>
           <p className="text-xl md:text-2xl mb-10 max-w-3xl text-gray-600">
-            Connect with verified buyers and sellers across 195 countries. 
-            Browse {categories.length}+ categories of products and commodities.
+            Connect with buyers and sellers securely. Message directly, browse listings, and manage your trades.
+            Currently in pilot with {categories.length} product categories.
           </p>
           <div className="flex gap-4">
             <Link
               href="/signup"
               className="px-8 py-3 bg-gray-900 text-white rounded font-medium hover:bg-gray-800 transition-colors"
             >
-              Get Started
+              Join Pilot Program
             </Link>
             <Link
               href="/signin"
@@ -52,64 +45,89 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
           <div className="grid grid-cols-3 gap-8 text-center">
             <div>
-              <div className="text-4xl font-bold text-gray-900">10,000+</div>
-              <div className="text-gray-600 mt-2">Active Traders</div>
+              <div className="text-4xl font-bold text-gray-900">100+</div>
+              <div className="text-gray-600 mt-2">Pilot Users</div>
             </div>
             <div>
-              <div className="text-4xl font-bold text-gray-900">{categories.length}+</div>
-              <div className="text-gray-600 mt-2">Categories</div>
+              <div className="text-4xl font-bold text-gray-900">50%</div>
+              <div className="text-gray-600 mt-2">Faster with Redis Cache</div>
             </div>
             <div>
-              <div className="text-4xl font-bold text-gray-900">195</div>
-              <div className="text-gray-600 mt-2">Countries</div>
+              <div className="text-4xl font-bold text-gray-900">{categories.length}</div>
+              <div className="text-gray-600 mt-2">Product Categories</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Features */}
+      <div className="py-16">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-3xl font-bold text-gray-900 mb-3">What You Can Do</h2>
+          <p className="text-gray-600 mb-10">Essential features for trading</p>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div className="p-6 bg-white border border-gray-200 rounded">
+              <div className="font-semibold text-gray-900 mb-2">Browse Listings</div>
+              <p className="text-sm text-gray-600">Search products across multiple categories and find what you need</p>
+            </div>
+            <div className="p-6 bg-white border border-gray-200 rounded">
+              <div className="font-semibold text-gray-900 mb-2">Message Traders</div>
+              <p className="text-sm text-gray-600">Chat directly with buyers and sellers to negotiate deals</p>
+            </div>
+            <div className="p-6 bg-white border border-gray-200 rounded">
+              <div className="font-semibold text-gray-900 mb-2">Manage Trades</div>
+              <p className="text-sm text-gray-600">Track your ongoing trades and transaction history</p>
+            </div>
+            <div className="p-6 bg-white border border-gray-200 rounded">
+              <div className="font-semibold text-gray-900 mb-2">Secure Accounts</div>
+              <p className="text-sm text-gray-600">Your data is protected with secure authentication</p>
             </div>
           </div>
         </div>
       </div>
 
       {/* Categories */}
-      <div className="py-16">
+      <div className="bg-gray-50 py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold text-gray-900 mb-3">Browse by Category</h2>
-          <p className="text-gray-600 mb-10">Find the products you're looking for</p>
-          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-3">
+          <h2 className="text-3xl font-bold text-gray-900 mb-3">Product Categories</h2>
+          <p className="text-gray-600 mb-10">Browse available trading categories</p>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             {categories.map((category) => (
-              <Link
+              <div
                 key={category}
-                href={`/category/${category.toLowerCase().replace(/\s+/g, '-')}`}
-                className="p-4 bg-white border border-gray-200 rounded hover:border-gray-400 hover:shadow-sm transition-all text-center"
+                className="p-4 bg-white border border-gray-200 rounded text-center"
               >
-                <div className="font-medium text-gray-900 text-sm">{category}</div>
-              </Link>
+                <div className="font-medium text-gray-900">{category}</div>
+              </div>
             ))}
           </div>
         </div>
       </div>
 
       {/* How it works */}
-      <div className="bg-gray-50 py-16">
+      <div className="py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-3xl font-bold text-gray-900 mb-12 text-center">How It Works</h2>
           <div className="grid md:grid-cols-3 gap-12">
             <div>
               <div className="text-6xl font-bold text-gray-200 mb-4">01</div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-3">Create Profile</h3>
+              <h3 className="text-xl font-semibold text-gray-900 mb-3">Create Account</h3>
               <p className="text-gray-600">
-                Sign up and specify whether you're an importer or exporter. Select your trade categories and location.
+                Sign up quickly and set up your trading profile. Choose whether you're buying or selling.
               </p>
             </div>
             <div>
               <div className="text-6xl font-bold text-gray-200 mb-4">02</div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-3">Browse & Connect</h3>
+              <h3 className="text-xl font-semibold text-gray-900 mb-3">Find Products</h3>
               <p className="text-gray-600">
-                Search through verified listings. Connect directly with potential trade partners in your industry.
+                Browse through categories to find what you're looking for and contact sellers directly.
               </p>
             </div>
             <div>
               <div className="text-6xl font-bold text-gray-200 mb-4">03</div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-3">Close Deals</h3>
+              <h3 className="text-xl font-semibold text-gray-900 mb-3">Complete Deals</h3>
               <p className="text-gray-600">
-                Negotiate terms, manage contracts, and execute trades securely within the platform.
+                Negotiate terms through our messaging system and finalize your trade agreements.
               </p>
             </div>
           </div>
@@ -117,17 +135,17 @@ export default function Home() {
       </div>
 
       {/* CTA */}
-      <div className="py-20">
+      <div className="bg-gray-50 py-20">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-4xl font-bold text-gray-900 mb-6">Start Trading Today</h2>
+          <h2 className="text-4xl font-bold text-gray-900 mb-6">Join the Pilot Program</h2>
           <p className="text-xl text-gray-600 mb-10">
-            Join thousands of importers and exporters using TradeSphere
+            Be part of our MVP pilot program and help shape the platform
           </p>
           <Link
             href="/signup"
             className="inline-block px-10 py-4 bg-gray-900 text-white rounded font-medium hover:bg-gray-800 transition-colors text-lg"
           >
-            Create Free Account
+            Request Access
           </Link>
         </div>
       </div>

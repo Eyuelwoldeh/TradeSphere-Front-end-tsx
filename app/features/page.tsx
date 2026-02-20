@@ -2,12 +2,10 @@
 import Illustration from "@/public/images/page-illustration.svg";
 
 import { 
-  FaCalculator, 
-  FaChartLine, 
-  FaComments, 
-  FaGlobe, 
-  FaFileContract, 
   FaShieldAlt,
+  FaComments, 
+  FaDatabase,
+  FaTachometerAlt,
   FaArrowRight,
   FaCheck
 } from "react-icons/fa";
@@ -15,71 +13,71 @@ import {
 export default function FeaturesPage() {
   const features = [
     {
-      icon: <FaCalculator className="text-indigo-400 text-5xl group-hover:scale-110 transition-transform duration-300" />,
-      title: "Advanced Import Cost Analysis",
-      description: "Make informed decisions with our comprehensive cost analysis tools.",
+      icon: <FaShieldAlt className="text-indigo-400 text-5xl group-hover:scale-110 transition-transform duration-300" />,
+      title: "Secure Accounts",
+      description: "Your data is protected with secure authentication.",
       benefits: [
-        "Real-time currency conversion and tax calculations",
-        "Dynamic duty and tariff estimation based on HS codes",
-        "Comparative analysis of shipping routes and carriers",
-        "Historical cost tracking and budget forecasting"
+        "Protected login system for all users",
+        "Different permissions for buyers and sellers",
+        "Secure password storage",
+        "Stay logged in across sessions"
       ],
-      link: "/cost-calculator",
-      linkText: "Access Cost Calculator",
+      link: "/signin",
+      linkText: "Sign In",
       stats: [
-        { value: "98%", label: "Calculation Accuracy" },
-        { value: "50+", label: "Countries Supported" }
-      ]
-    },
-    {
-      icon: <FaChartLine className="text-indigo-400 text-5xl group-hover:scale-110 transition-transform duration-300" />,
-      title: "Predictive Market Intelligence",
-      description: "Stay ahead with AI-powered market insights and trend analysis.",
-      benefits: [
-        "Machine learning-driven demand forecasting",
-        "Supply chain disruption predictions",
-        "Competitor pricing analysis",
-        "Regional market opportunity identification"
-      ],
-      link: "/market-predictions",
-      linkText: "Explore Market Insights",
-      stats: [
-        { value: "92%", label: "Prediction Accuracy" },
-        { value: "24/7", label: "Real-time Updates" }
+        { value: "100+", label: "Active Users" },
+        { value: "Secure", label: "Login" }
       ]
     },
     {
       icon: <FaComments className="text-indigo-400 text-5xl group-hover:scale-110 transition-transform duration-300" />,
-      title: "Secure Business Communication Hub",
-      description: "Connect and collaborate with verified trade partners worldwide.",
+      title: "Direct Messaging",
+      description: "Chat with buyers and sellers in real-time.",
       benefits: [
-        "End-to-end encrypted messaging",
-        "Multi-language translation support",
-        "Automated meeting scheduling",
-        "Document sharing and e-signatures"
+        "Send messages to any user on the platform",
+        "All conversations saved automatically",
+        "See your full chat history",
+        "Easy back-and-forth negotiations"
       ],
-      link: "/messages",
-      linkText: "Start Networking",
+      link: "/signin",
+      linkText: "Start Chatting",
       stats: [
-        { value: "1M+", label: "Active Users" },
-        { value: "100+", label: "Languages" }
+        { value: "Instant", label: "Messages" },
+        { value: "Saved", label: "History" }
       ]
     },
     {
-      icon: <FaGlobe className="text-indigo-400 text-5xl group-hover:scale-110 transition-transform duration-300" />,
-      title: "Global Trade Analytics Dashboard",
-      description: "Visualize and analyze international trade flows in real-time.",
+      icon: <FaTachometerAlt className="text-indigo-400 text-5xl group-hover:scale-110 transition-transform duration-300" />,
+      title: "Fast & Reliable",
+      description: "Quick loading pages and instant search results.",
       benefits: [
-        "Interactive trade route mapping",
-        "Custom data visualization tools",
-        "Export/Import trend analysis",
-        "Regional market performance metrics"
+        "Pages load 50% faster than average",
+        "Search results appear instantly",
+        "Smooth navigation throughout site",
+        "Works reliably even with many users"
       ],
-      link: "/trade-data",
-      linkText: "View Analytics",
+      link: "/signup",
+      linkText: "Try It Now",
       stats: [
-        { value: "200+", label: "Countries Tracked" },
-        { value: "5M+", label: "Data Points" }
+        { value: "50%", label: "Faster" },
+        { value: "Instant", label: "Search" }
+      ]
+    },
+    {
+      icon: <FaDatabase className="text-indigo-400 text-5xl group-hover:scale-110 transition-transform duration-300" />,
+      title: "Browse & Search",
+      description: "Find exactly what you're looking for quickly.",
+      benefits: [
+        "Search across 8 product categories",
+        "Filter results by your preferences",
+        "View detailed product listings",
+        "Contact sellers directly from listings"
+      ],
+      link: "/signup",
+      linkText: "Start Browsing",
+      stats: [
+        { value: "8", label: "Categories" },
+        { value: "Easy", label: "Search" }
       ]
     }
   ];
@@ -90,21 +88,21 @@ export default function FeaturesPage() {
         {/* Header Section */}
         <div className="text-center max-w-3xl mx-auto" data-aos="fade-up">
           <h1 className="animate-[gradient_6s_linear_infinite] bg-[linear-gradient(to_right,var(--color-gray-200),var(--color-indigo-200),var(--color-gray-50),var(--color-indigo-300),var(--color-gray-200))] bg-[length:200%_auto] bg-clip-text font-nacelle text-5xl font-bold text-transparent md:text-6xl mb-6">
-            Enterprise-Grade Trading Solutions
+            Everything You Need to Trade
           </h1>
           <p className="text-xl text-indigo-200/75 leading-relaxed">
-            Transform your international trade operations with our comprehensive suite of AI-powered tools, 
-            secure communication platforms, and real-time analytics designed for modern businesses.
+            Simple, secure tools to connect with traders, manage deals, and grow your business.
+            Currently in pilot phase with 100+ active users.
           </p>
         </div>
 
         {/* Stats Bar */}
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mt-16 mb-24 max-w-4xl mx-auto">
           {[
-            { value: "$50B+", label: "Trade Volume Processed" },
-            { value: "50,000+", label: "Active Companies" },
-            { value: "180+", label: "Countries Served" },
-            { value: "99.9%", label: "Platform Uptime" }
+            { value: "100+", label: "Pilot Users" },
+            { value: "50%", label: "Faster with Redis" },
+            { value: "JWT", label: "Authentication" },
+            { value: "MVP", label: "Phase" }
           ].map((stat, index) => (
             <div key={index} className="text-center p-6 rounded-xl bg-gray-800/50 backdrop-blur-sm border border-gray-700/50">
               <div className="text-3xl font-bold text-indigo-400 mb-2">{stat.value}</div>
@@ -166,13 +164,13 @@ export default function FeaturesPage() {
         {/* CTA Section */}
         <div className="mt-24 text-center">
           <div className="inline-block p-8 rounded-2xl bg-gradient-to-r from-indigo-600/20 to-indigo-400/20 backdrop-blur-sm border border-indigo-500/30">
-            <h3 className="text-2xl font-bold text-white mb-4">Ready to Transform Your Trading Operations?</h3>
-            <p className="text-gray-300 mb-6">Join thousands of companies already using our platform to scale their international trade.</p>
+            <h3 className="text-2xl font-bold text-white mb-4">Join the TradeSphere Pilot Program</h3>
+            <p className="text-gray-300 mb-6">Be part of our MVP testing phase and help shape the future of the platform.</p>
             <a 
               href="/signup" 
               className="inline-flex items-center gap-2 px-8 py-3 bg-indigo-500 text-white rounded-lg hover:bg-indigo-600 transition-colors"
             >
-              Get Started Now
+              Request Access
               <FaArrowRight />
             </a>
           </div>
