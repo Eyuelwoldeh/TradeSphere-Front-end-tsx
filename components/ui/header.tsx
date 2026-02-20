@@ -43,9 +43,6 @@ export default function Header() {
 
           {/* Navigation */}
           <nav className="hidden md:flex items-center space-x-8">
-            <Link href="/browse" className="text-gray-700 hover:text-gray-900 transition-colors font-medium">
-              Browse
-            </Link>
             <Link href="/features" className="text-gray-700 hover:text-gray-900 transition-colors">
               Features
             </Link>
